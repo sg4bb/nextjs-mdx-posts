@@ -3,6 +3,7 @@ import { allPosts } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Link from "next/link";
+import ButtonBack from "@/components/ButtonBack";
 
 interface Props {
   params: {
@@ -37,17 +38,20 @@ const PostLayout = ({ params }: Props) => {
   }
 
   return (
-    <div className="container mt-20">
-      <Link
-        href="/posts"
-        className="bg-black text-white px-4 py-2 rounded hover:bg-slate-700"
-      >
-        Volver atras
-      </Link>
-      <h1 className="text-3xl text-center my-4">{post.title}</h1>
-      <Time date={post.date} />
+    <>
+      <h1 className="text-center text-2xl font-bold uppercase">{post.title}</h1>
+      <div className="mb-8 text-center">
+        <span className="text-gray-700">
+          <Time date={post.date} />
+        </span>
+      </div>
+
       <MDXContent />
-    </div>
+
+      <div className="mt-8 text-center">
+        <ButtonBack>Volver</ButtonBack>
+      </div>
+    </>
   );
 };
 
